@@ -1,3 +1,4 @@
+import Head from 'next/head';
 
 export async function getServerSideProps(context) {
   const {user} = context.query;
@@ -11,34 +12,56 @@ export async function getServerSideProps(context) {
 export default function Result(props) {
   return (
     <>
-      <link rel="stylesheet" href="reset.css"/>
-      <link rel="stylesheet" href="style.css"/>
-      <script defer type="module" src="/script.js"></script>
+      <Head>
+        <meta charset="utf-8"/>
+        <meta name="robots" content="index,follow,archive"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <script defer src="script.js"></script>
+        <link rel="stylesheet" href="reset.css"/>
+        <link rel="stylesheet" href="style.css"/>
+        <meta http-equiv="x-dns-prefetch-control" content="on"/>
+        <title>webstock.dev | Stock a website on your gist.</title>
+        <meta id="og_url" property="og:url" content="https://webstock.dev"/>
+        <meta id="og_title" property="og:title" content="webstock.dev | Stock a website on your gist."/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:creator" content="@y20010920t"/>
+        <meta name="description" content="Stock a website on your gist."/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="https://2001y.me/blog/tmb/.jpeg"/>
+      </Head>
       <header>
-      <h1><a href="https://webstock.dev" id="Htitleurl" className="loading">webstock.dev/{props.keyword}</a></h1>
-      <input type="checkbox" id="nologinCheck"></input>
-      <label htmlFor="nologinCheck" id="login" className="nologin"></label>
-      <label htmlFor="nologinCheck" id="tokenWin" className="close">
-        <div>
-          <h3>Gist Access Token</h3>
-          <form target="sendPhoto">
-            <input type="text" id="Htoken"></input>
-            <input type="submit" value="save" onClick='setToken();'></input>
-          </form>
-        </div>
-      </label>
-      <form target="sendPhoto" id="add" className="close">
-        <input type="text" id="add_url"></input>
-        <input type="submit" value="add" onClick='addGist(add_url.value);add_url.value="";'></input>
-      </form>
+        <h1><a href="https://webstock.dev" id="Htitleurl" class="loading">webstock.dev</a></h1>
+        <input type="checkbox" id="nologinCheck"/>
+        <label for="nologinCheck" id="login"></label>
+        <label for="nologinCheck" id="tokenWinBg" class="close">
+          <label htmlFor="no" id="tokenWin">
+            <h3>Gist Access Token</h3>
+            <form target="sendPhoto" onsubmit="setToken();">
+              <input type="text" id="Htoken"/>
+              <input type="submit" value="save"/>
+            </form>
+          </label>
+        </label>
+        <form target="sendPhoto" id="add" class="close">
+          <button onclick='document.body.classList.toggle("noedit");'>edit</button>・
+          <input type="text" id="add_url" autoFocus/>
+          <input type="submit" value="add" onclick='addGist(add_url.value);add_url.value="";'/>
+        </form>
         <iframe name="sendPhoto" style={{ width: "0", height: "0", border: "0" }}></iframe>
-    </header>
-    <main>
-      <ul id="Hstock"></ul>
-    </main>
-    <footer>
-      ©︎webstock.dev <a href="https://2001y.me" target ="_blank"> by <span>2001Y</span></a>
-    </footer>
+      </header>
+      <main>
+        <ul id="Hstock"></ul>
+      </main>
+      <footer>
+        <div>
+          <a href="https://webstock.dev" target="_blank">
+            ©︎webstock.dev
+          </a>
+          <a href="https://2001y.me" target="_blank">
+            by<span>2001Y</span>
+          </a>
+        </div>
+      </footer>
     </>
-  )
+  );
 }

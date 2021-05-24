@@ -1,20 +1,25 @@
+
 const user = location.href.split('/').pop();
+Htitleurl.innerHTML = "webstock.dev?" + user;
+document.title = "webstock.dev?" + user;
+og_title.content = "webstock.dev?" + user;
+og_url.content = "https://webstock.dev?" + user;
+Htitleurl.href = "https://webstock.dev?" + user;
 getGistList(user);
 if (localStorage.getItem(user + "_token")) {
   Htoken.value = localStorage.getItem(user + "_token");
-  login.classList.replace("nologin", "login");
-  add.classList.replace("close", "open");
+  document.body.classList.replace("nologin", "login");
 }
 
 async function view(content) {  
   localStorage.setItem(user + "_webstock", JSON.stringify(content));
   var stockList = '';
   content.forEach(function(value) {
-    stockList += '<li><img class=site src="https://s.wordpress.com/mshots/v1/'+value+'"></li>';
+    stockList += '<li class=site><div class=delete>×</div><img src="https://s.wordpress.com/mshots/v1/'+value+'"></li>';
   });
   Hstock.innerHTML = stockList;
 
-  document.querySelectorAll(".site").forEach((elm,i) => {
+  document.querySelectorAll(".delete").forEach((elm,i) => {
     elm.addEventListener("click", () => {
       let webstock = JSON.parse(localStorage.getItem(user + "_webstock"));
       webstock.splice(i, 1);
@@ -94,18 +99,6 @@ async function setGist(content) {
     });
 }
 
-function setToken() {
-  localStorage.setItem(user + "_token", Htoken.value);
-  nologinCheck.checked = false;
-  if (localStorage.getItem(user + "_token")) {
-    login.classList.replace("nologin", "login");
-    add.classList.replace("close", "open");
-  } else {
-    login.classList.replace("login", "nologin");
-    add.classList.replace("open", "close");
-  }
-}
-
 function addGist(e) {
   let content = JSON.parse(localStorage.getItem(user + "_webstock"));
   content.unshift(e);
@@ -116,4 +109,14 @@ function addGist(e) {
     view(JSON.parse(localStorage.getItem(user + "_webstock")));
     // }, 1000);
   }, 10000);
+}
+
+function setToken() {
+  localStorage.setItem(user + "_token", Htoken.value);
+  nologinCheck.checked = false;
+  if (localStorage.getItem(user + "_token")) {
+    document.body.classList.replace("nologin", "login");
+  } else {
+    document.body.classList.replace("login", "nologin");
+  }
 }

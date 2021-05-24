@@ -1,10 +1,8 @@
-@charset "UTF-8";
 body {
   background: #f2f2eb;
   font-family: monospace,"游ゴシック", "Yu Gothic", YuGothic;
   font-weight: bold;
 }
-
 img {
   width: 300px;
 }
@@ -16,26 +14,21 @@ header {
   justify-content: center;
   align-items: center;
 }
-
 h1 {
   font-size: 1.5em;
 }
-
 form {
   display: flex;
   justify-content: center;
 }
-
 input {
   width: 15em;
   border-bottom: 1px solid #000;
+  &[type="submit"] {
+    width: auto;
+    padding-left: .5em;
+  }
 }
-
-input[type="submit"] {
-  width: auto;
-  padding-left: .5em;
-}
-
 #add {
   margin-left: auto;
 }
@@ -44,60 +37,52 @@ input[type="submit"] {
   font-size: .7em;
   padding: .7em 0 0 .5em;
 }
-
-.nologin #login {
-  color: #d60909;
+.nologin {
+  #login {
+    color: #d60909;
+    &::after {
+      content: "nologin";
+    }
+  }
+  #add {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
 }
-
-.nologin #login::after {
-  content: "nologin";
-}
-
-.nologin #add {
-  display: none;
-}
-
-.nologin .delete {
-  display: none;
-}
-
-.login #login {
-  color: #20c902;
-}
-
-.login #login::after {
-  content: "login";
-}
-
-.login #add {
-  display: flex;
+.login {
+  #login {
+    color: #20c902;
+    &::after {
+      content: "login";
+    }
+  }
+  #add {
+    display: flex;
+  }
 }
 
 .done {
   animation: done 2s;
 }
-
-.loading, .warning, .err {
+.loading,.warning,.err {
   animation: loading .5s infinite;
 }
-
 .warning {
   color: #dbd806;
 }
-
 .err {
   color: #d60909;
 }
-
 @keyframes done {
   20% {
-    color: #20c902;
+    color:#20c902;
   }
   80% {
-    color: #20c902;
+    color:#20c902;
   }
 }
-
 @keyframes loading {
   0% {
     opacity: .3;
@@ -116,18 +101,15 @@ main {
   justify-content: center;
   align-items: center;
 }
-
 #Hstock {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
 }
-
 .site {
   position: relative;
 }
-
 .delete {
   width: 1.5em;
   height: 1.5em;
@@ -146,7 +128,6 @@ main {
 #nologinCheck:checked + label + #tokenWinBg {
   visibility: visible;
 }
-
 #tokenWinBg {
   background: rgba(0, 0, 0, 0.3);
   width: 100vw;
@@ -159,16 +140,14 @@ main {
   left: 0;
   visibility: hidden;
   z-index: 9999;
-}
-
-#tokenWinBg label {
-  padding: 2em;
-  background: #f2f2eb;
-  cursor: default;
-}
-
-#tokenWinBg h3 {
-  margin: 0 0 1em 0;
+  label {
+    padding: 2em;
+    background: #f2f2eb;
+    cursor: default;
+  }
+  h3 {
+    margin: 0 0 1em 0;
+  }
 }
 
 footer {
@@ -177,4 +156,3 @@ footer {
   justify-content: center;
   align-items: center;
 }
-/*# sourceMappingURL=style.css.map */
