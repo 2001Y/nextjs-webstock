@@ -11,9 +11,15 @@ if (localStorage.getItem(user + "_token")) {
   document.body.classList.replace("nologin", "login");
 }
 
-async function view(content) {  
+test.addEventListener("click", (e) => {
+  // 規定の動作をキャンセル
+  e.preventDefault();
+  setToken();
+}
+
+function view(content) {  
   localStorage.setItem(user + "_webstock", JSON.stringify(content));
-  var stockList = '';
+  var stockList = "";
   content.forEach(function(value) {
     stockList += '<li class=site><div class=delete>×</div><img src="https://s.wordpress.com/mshots/v1/'+value+'"></li>';
   });
@@ -41,7 +47,7 @@ async function getGistList() {
         data.forEach(function (value) {
           if (value.files["webstock.json"]) {
             let url = new URL(value.files["webstock.json"].raw_url);
-            let url_id = url.pathname.split('/')[2];
+            let url_id = url.pathname.split("/")[2];
             localStorage.setItem(user + "_id", url_id);
             getGist(url_id);
             console.log("userName > id > view");
@@ -79,7 +85,7 @@ async function setGist(content) {
     method: "PATCH",
     headers: {
       Accept: "application/vnd.github.v3+json",
-      Authorization: "token " + token
+      Authorization: "token " + token,
     },
     body: JSON.stringify({
       description: "Updated at " + new Date().toLocaleString(),

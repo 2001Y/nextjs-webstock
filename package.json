@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "next dev && next-sitemap",
+    "build": "next build && next-sitemap",
+    "start": "next start",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@sergeymyssak/nextjs-sitemap": "^1.1.1",
     "next": "10.2.2",
     "playwright-aws-lambda": "^0.6.0",
     "react": "17.0.2",
