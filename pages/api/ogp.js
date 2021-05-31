@@ -1,52 +1,65 @@
-import ReactDOM from "react-dom/server";
-import * as playwright from "playwright-aws-lambda";
-
-const styles = `
-  html, body {
-    height: 100%;
-    display: grid;
-  }
-
-  h1 { margin: auto }
-`;
-
-const Content = (props) => (
-  <html>
-    <head>
-      <style>{styles}</style>
-    </head>
-    <body>
-      <h1>{props.title}</h1>
-    </body>
-  </html>
-);
+import * as path from "path";
+const { createCanvas, registerFont, loadImage } = require("canvas");
 
 export default async (req, res) => {
-  // サイズの設定
-  const viewport = { width: 1200, height: 630 };
+  const { text } = req.query;
 
-  // ブラウザインスタンスの生成
-  const browser = await playwright.launchChromium();
-  const page = await browser.newPage({ viewport });
+  function splitByMeasureWidth(str, maxWidth, context) {
+    const lines = [];
+    let line = "";
+    str.split("").forEach((char) => {
+      line += char;
+      if (context.measureText(line).width > maxWidth) {
+        lines.push(line.slice(0, -1));
+        line = line.slice(-1);
+      }
+    });
+    lines.push(line);
+    return lines;
+  }
 
-  // HTMLの生成
-  const props = { title: "Hello OGP!" };
-  const markup = ReactDOM.renderToStaticMarkup(<Content {...props} />);
-  const html = `<!doctype html>${markup}`;
+  async function generateImage(text) {
+    const CANVAS_WIDTH = 1600;
+    const CANVAS_HEIGHT = 900;
 
-  // HTMLをセットして、ページの読み込み完了を待つ
-  await page.setContent(html, { waitUntil: "domcontentloaded" });
+    const TEXT_SIZE = 72;
+    const TEXT_LINE_MARGIN_SIZE = 16;
+    const TEXT_MARGIN_X = 68;
 
-  // スクリーンショットを取得する
-  const image = await page.screenshot({ type: "png" });
-  await browser.close();
+    registerFont( path.join("fonts", "shirokuma-regular.ttf") ,
+                   { family: "shirokuma-regular" });
 
-  // Vercel Edge Networkのキャッシュを利用するための設定
-  res.setHeader("Cache-Control", "s-maxage=31536000, stale-while-revalidate");
+    const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+    const context = canvas.getContext("2d");
 
-  // Content Type を設定
-  res.setHeader("Content-Type", "image/png");
+    const backgroundImage = await loadImage( path.join("images","ogp-background.jpg") );
+    context.drawImage(backgroundImage, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  // レスポンスを返す
-  res.end(image);
+    context.font = `${TEXT_SIZE} shirokuma-regular`;
+    context.fillStyle = "#000";
+    const textLines = splitByMeasureWidth(text, CANVAS_WIDTH - TEXT_MARGIN_X, context);
+
+    let lineY = CANVAS_HEIGHT / 2 - ((TEXT_SIZE + TEXT_LINE_MARGIN_SIZE) / 2) * (textLines.length - 1);
+
+    textLines.forEach((line) => {
+      const textWidth = context.measureText(line).width;
+      context.fillText(line, (CANVAS_WIDTH - textWidth) / 2, lineY);
+      lineY += TEXT_SIZE + TEXT_LINE_MARGIN_SIZE;
+    });
+
+    return canvas.toBuffer();
+  }
+
+  try {
+    const image = await generateImage("webstock.dev/"+text);
+    res.writeHead(200, {
+      "Content-Type": "image/png",
+      "Content-Length": image.length,
+    });
+
+    res.end(image, "binary");
+  } catch (error) {
+    console.log(error);
+    res.end(error.message);
+  }
 };
