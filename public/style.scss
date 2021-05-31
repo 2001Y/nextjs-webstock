@@ -3,24 +3,62 @@ body {
 }
 * {
   font-family: monospace,"游ゴシック", "Yu Gothic", YuGothic;
-  // font-weight: bold;
 }
 img {
   width: 300px;
+  max-width: 100%;
 }
 p {
   color: #535353;
   line-height: 1.5;
   margin-bottom: 1.5em;
+  font-weight: bold;
+}
+main,#lang {
   a {
     color: #007be0;
-    font-weight: bold;
-    margin: 0 .3em;
+    padding: 0 .2em;
   }
 }
-pre {
+#lang {
+  margin-left: auto;
+  span {
+    padding: 0 .2em;
+  }
+}
+pre,code {
+  padding: 0 .2em;
+  margin: 0 .3em;
   color: #fff;
   background: rgb(46, 46, 46);
+}
+ol {
+  list-style-type: decimal-leading-zero;
+}
+li {
+  list-style-position:outside;
+  margin-left: 3em;
+  h4 {
+    font-size: 1em;
+    margin-top: 1em;
+    margin-bottom: .3em;
+  }
+  p {
+    font-size: .8em;
+    margin-bottom: .5em;
+  }
+}
+
+@media (max-width: 600px) {
+  #welcome {
+    margin-bottom: 5rem;
+  }
+  h2 {
+    margin-top: 2rem;
+  }
+  header,footer {
+    font-size: .8em;
+  }
 }
 
 header {
@@ -48,11 +86,20 @@ input {
 }
 #add {
   margin-left: auto;
+  @media (max-width: 700px) {
+    width: 100vw;
+    padding: .7em;
+    background: #f2f2eb;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+  }
 }
 
 #login {
   font-size: .7em;
-  padding: .7em 0 0 .5em;
+  padding: 1em 0 0 .5em;
 }
 .nologin {
   #login {
@@ -113,6 +160,7 @@ input {
 }
 
 main {
+  padding: 1.5em;
   min-height: calc(100vh - 7.5em);
   &:not(#index) {
     display: flex;
@@ -122,7 +170,6 @@ main {
 }
 #index {
   max-width: 700px;
-  padding: 1em;
   margin: auto;
 }
 #Hstock {
@@ -133,20 +180,33 @@ main {
 }
 .site {
   position: relative;
+  margin: .5em;
+  img {
+    aspect-ratio: 4/3;
+  }
+}
+#edit {
+  cursor: pointer;
+}
+.noedit {
+  .delete {
+    visibility:hidden;
+  }
 }
 .delete {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.3em;
+  height: 1.3em;
   border-radius: 100%;
   color: #fff;
   background: #000;
   position: absolute;
-  top: -.75em;
-  right: -.75em;
+  top: -.5em;
+  left: -.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  cursor: pointer;
 }
 
 #nologinCheck:checked + label + #tokenWinBg {
@@ -165,12 +225,20 @@ main {
   visibility: hidden;
   z-index: 9999;
   label {
-    padding: 2em;
+    padding: 1.5em 3em;
     background: #f2f2eb;
     cursor: default;
   }
   h3 {
-    margin: 0 0 1em 0;
+    margin: 0;
+  }
+  p {
+    font-size: .7em;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  input {
+    padding-top: .5em;
   }
 }
 
@@ -180,4 +248,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  span {
+    color: #007be0;
+    font-weight: bold;
+    padding: 0 .2em;
+  }
 }

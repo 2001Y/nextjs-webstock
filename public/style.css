@@ -9,23 +9,66 @@ body {
 
 img {
   width: 300px;
+  max-width: 100%;
 }
 
 p {
   color: #535353;
   line-height: 1.5;
   margin-bottom: 1.5em;
-}
-
-p a {
-  color: #007be0;
   font-weight: bold;
-  margin: 0 .3em;
 }
 
-pre {
+main a, #lang a {
+  color: #007be0;
+  padding: 0 .2em;
+}
+
+#lang {
+  margin-left: auto;
+}
+
+#lang span {
+  padding: 0 .2em;
+}
+
+pre, code {
+  padding: 0 .2em;
+  margin: 0 .3em;
   color: #fff;
   background: #2e2e2e;
+}
+
+ol {
+  list-style-type: decimal-leading-zero;
+}
+
+li {
+  list-style-position: outside;
+  margin-left: 3em;
+}
+
+li h4 {
+  font-size: 1em;
+  margin-top: 1em;
+  margin-bottom: .3em;
+}
+
+li p {
+  font-size: .8em;
+  margin-bottom: .5em;
+}
+
+@media (max-width: 600px) {
+  #welcome {
+    margin-bottom: 5rem;
+  }
+  h2 {
+    margin-top: 2rem;
+  }
+  header, footer {
+    font-size: .8em;
+  }
 }
 
 header {
@@ -60,9 +103,21 @@ input[type="submit"] {
   margin-left: auto;
 }
 
+@media (max-width: 700px) {
+  #add {
+    width: 100vw;
+    padding: .7em;
+    background: #f2f2eb;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+  }
+}
+
 #login {
   font-size: .7em;
-  padding: .7em 0 0 .5em;
+  padding: 1em 0 0 .5em;
 }
 
 .nologin #login {
@@ -131,6 +186,7 @@ input[type="submit"] {
 }
 
 main {
+  padding: 1.5em;
   min-height: calc(100vh - 7.5em);
 }
 
@@ -142,7 +198,6 @@ main:not(#index) {
 
 #index {
   max-width: 700px;
-  padding: 1em;
   margin: auto;
 }
 
@@ -155,21 +210,35 @@ main:not(#index) {
 
 .site {
   position: relative;
+  margin: .5em;
+}
+
+.site img {
+  aspect-ratio: 4/3;
+}
+
+#edit {
+  cursor: pointer;
+}
+
+.noedit .delete {
+  visibility: hidden;
 }
 
 .delete {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.3em;
+  height: 1.3em;
   border-radius: 100%;
   color: #fff;
   background: #000;
   position: absolute;
-  top: -.75em;
-  right: -.75em;
+  top: -.5em;
+  left: -.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  cursor: pointer;
 }
 
 #nologinCheck:checked + label + #tokenWinBg {
@@ -191,13 +260,23 @@ main:not(#index) {
 }
 
 #tokenWinBg label {
-  padding: 2em;
+  padding: 1.5em 3em;
   background: #f2f2eb;
   cursor: default;
 }
 
 #tokenWinBg h3 {
-  margin: 0 0 1em 0;
+  margin: 0;
+}
+
+#tokenWinBg p {
+  font-size: .7em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#tokenWinBg input {
+  padding-top: .5em;
 }
 
 footer {
@@ -206,5 +285,11 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+footer span {
+  color: #007be0;
+  font-weight: bold;
+  padding: 0 .2em;
 }
 /*# sourceMappingURL=style.css.map */
