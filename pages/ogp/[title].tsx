@@ -28,13 +28,14 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const html = `<html>
       <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
         <style>
         @font-face {
           font-family: 'Noto Sans JP';
           font-style: normal;
           font-weight: 700;
           font-display: swap;
-          src: url(/ogp/font.woff2) format('woff2');
+          src: url(https://fonts.gstatic.com/l/font?kit=-F6pfjtqLzI2JPCgQBnw7HFQei0q131nj-onntiDTxoRVjbcOUp04DWFxCuuodHz3eKtfOjDRlWPjiaFP8eIi3-L1DQgz-NLL1RROhokm45x_erAbsNAvOUYw1Os0xEEwIUex3Stg7lpnsNk-s0JY3AzMJQfpIAu5ueRPyFAnQogb1cHgrZinc8rM76qoL8NeNL4WqBwkukPtjAJGBxAInz5rz4lrKM&skey=b1468649b9c42538&v=v28) format('woff2');
         }
         :root {
           font-size: 2em;
@@ -90,7 +91,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     </html>`
 
   const page = await browser.newPage()
-  await page.setContent(html,{waitUntil:'domcontentloaded'})
+  await page.setContent(html, { waitUntil: 'networkidle2' })
   const buffer = await page.screenshot()
 
   res.setHeader('Content-Type', 'image/png')
