@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           font-size: 2em;
         }
         body {
-          font-family: monospace,'Noto Sans JP',"游ゴシック", "Yu Gothic", YuGothic;
+          font-family: monospace,'Noto Sans JP';
           color: #000;
           width: 100vw;
           height: 100vh;
@@ -49,6 +49,15 @@ export const getServerSideProps: GetServerSideProps = async ({
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+        body::after {
+          width: 100vw;
+          height: 3vh;
+          content: "";
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          background: #000;
         }
         section {
           max-wight: 90%;
