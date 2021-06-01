@@ -49,9 +49,9 @@ export const getServerSideProps: GetServerSideProps = async ({
           margin-right: 3rem;
         }
         h1 {
-          letter-spacing: -0.1em;
+          letter-spacing: -0.05em;
           font-feature-settings: "palt";
-          font-size: 2rem;
+          font-size: 2.3rem;
           font-weight: bold;
           margin: 0 0 1rem 0;
         }
@@ -65,6 +65,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         b {
           font-size: 1.1em;
           margin: 0 .5em;
+          letter-spacing: -0.05em;
         }
         .right {
           margin: 0 .5em 0 0;
