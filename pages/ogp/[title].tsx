@@ -29,8 +29,14 @@ export const getServerSideProps: GetServerSideProps = async ({
   const html = `<html>
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap&text=はをデータベースに、お気に入りのサイトをサムネと共にストックすることができます。" rel="stylesheet">
         <style>
+        @font-face {
+          font-family: 'Noto Sans JP';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/l/font?kit=-F6pfjtqLzI2JPCgQBnw7HFQei0q131nj-onntiDTxoRVjbcOUp04DWFxCuuodHz3eKtfOjDRlWPjiaFP8eIi3-L1DQgz-NLL1RROhokm45x_erAbsNAvOUYw1Os0xEEwIUex3Stg7lpnsNk-s0JY3AzMJQfpIAu5ueRPyFAnQogb1cHgrZinc8rM76qoL8NeNL4WqBwkukPtjAJGBxAInz5rz4lrKM&skey=b1468649b9c42538&v=v28) format('woff2');
+        }
         :root {
           font-size: 2em;
         }
@@ -49,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           margin-right: 3rem;
         }
         h1 {
-          letter-spacing: -0.05em;
+          letter-spacing: -0.03em;
           font-feature-settings: "palt";
           font-size: 2.3rem;
           font-weight: bold;
@@ -65,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         b {
           font-size: 1.1em;
           margin: 0 .5em;
-          letter-spacing: -0.05em;
+          letter-spacing: -0.03em;
         }
         .right {
           margin: 0 .5em 0 0;
