@@ -63,6 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         }
         span {
           font-size: 3.5rem;
+          margin-left: .1em;
         }
         p {
           color: #535353;
@@ -90,7 +91,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     </html>`
 
   const page = await browser.newPage()
-  await page.setContent(html)
+  await page.setContent(html,{waitUntil:"networkidle"})
   const buffer = await page.screenshot()
 
   res.setHeader('Content-Type', 'image/png')
