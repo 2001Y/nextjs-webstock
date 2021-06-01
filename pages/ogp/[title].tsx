@@ -82,6 +82,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         p {
           color: #535353;
           line-height: 1.5;
+          font-weight: bold;
         }
         b {
           font-size: 1.1em;
