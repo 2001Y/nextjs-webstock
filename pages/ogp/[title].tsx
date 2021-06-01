@@ -91,7 +91,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     </html>`
 
   const page = await browser.newPage()
-  await page.setContent(html,{waitUntil:"networkidle"})
+  await page.setContent(html,{waitUntil:'domcontentloaded'})
   const buffer = await page.screenshot()
 
   res.setHeader('Content-Type', 'image/png')
