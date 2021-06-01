@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           font-size: 2em;
         }
         body {
-          font-family: 'Overpass Mono','Noto Sans JP',"游ゴシック", "Yu Gothic", YuGothic;
+          font-family: 'Overpass Mono',monospace,'Noto Sans JP',"游ゴシック", "Yu Gothic", YuGothic;
           color: #000;
           width: 100vw;
           height: 100vh;
@@ -49,9 +49,11 @@ export const getServerSideProps: GetServerSideProps = async ({
           margin-right: 3rem;
         }
         h1 {
+          letter-spacing: -0.1em;
+          font-feature-settings: "palt";
           font-size: 2rem;
           font-weight: bold;
-          margin: 1rem 0;
+          margin: 0 0 1rem 0;
         }
         span {
           font-size: 3.5rem;
