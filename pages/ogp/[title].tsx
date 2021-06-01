@@ -69,14 +69,14 @@ export const getServerSideProps: GetServerSideProps = async ({
         h1 {
           letter-spacing: -0.03em;
           font-feature-settings: "palt";
-          font-size: 2rem;
+          font-size: 3.5rem;
           font-weight: bold;
           margin: 0 0 1.3rem 0;
           line-height: 1;
         }
         span {
-          font-size: 3.5rem;
-          margin-left: .1em;
+          font-size: 2rem;
+          margin-right: .1em;
           display: inline-block;
         }
         p {
@@ -95,10 +95,10 @@ export const getServerSideProps: GetServerSideProps = async ({
       </head>
       <body>
         <section>
-          <h1>webstock.dev/<span>${title}</span></h1>
+          <h1><span>webstock.dev/</span>${title}</h1>
           <p>
             <b class=right>webstock.dev</b>は<b>Gist</b>をデータベースに、<br>
-            お気に入りの<b>Web</b>サイトをサムネと共にストックすることができます。
+            お気に入りのWebサイトをサムネと共にストックすることができます。
           </p>
         </section>
       </body>
