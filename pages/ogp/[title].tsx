@@ -40,14 +40,18 @@ export const getServerSideProps: GetServerSideProps = async ({
         :root {
           font-size: 2em;
         }
+        * {
+          box-sizing: border-box;
+        }
         body {
           font-family: monospace,'Noto Sans JP';
           color: #000;
           width: 100vw;
           height: 100vh;
+          padding: 8vh;
           background-color: #f2f2eb;
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
         }
         body::after {
@@ -60,19 +64,20 @@ export const getServerSideProps: GetServerSideProps = async ({
           background: #000;
         }
         section {
-          max-wight: 90%;
           margin-right: 3rem;
         }
         h1 {
           letter-spacing: -0.03em;
           font-feature-settings: "palt";
-          font-size: 2.3rem;
+          font-size: 2rem;
           font-weight: bold;
-          margin: 0 0 1rem 0;
+          margin: 0 0 1.3rem 0;
+          line-height: 1;
         }
         span {
           font-size: 3.5rem;
           margin-left: .1em;
+          display: inline-block;
         }
         p {
           color: #535353;
