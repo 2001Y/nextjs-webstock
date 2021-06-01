@@ -13,47 +13,47 @@ export default function Result(props) {
         <meta name="description" content="Stock a website on your gist."/>
         <meta key="ogp" property="og:image" content="https://2001y.me/blog/tmb/.jpeg" />
         
-        <meta name="lang" content="ja" />
+        <meta name="lang" content="en" />
         <link rel="canonical" href="https://webstock.dev" />
         <link rel="alternate" href="https://webstock.dev" hrefLang="ja" />
         <link rel="alternate" href="https://webstock.dev/en" hrefLang="en" />
       </Head>
       <header>
-        <h1><a href="https://webstock.dev">webstock.dev/index</a></h1>
+        <h1><a href="https://webstock.dev">webstock.dev/en/index</a></h1>
         <div id="lang">
-          <span>JA</span>/<a href="/en">EN</a>
+          <a href="/">JA</a>/<span>EN</span>
         </div>
       </header>
       <main id="index">
         <div id="welcome">
           <h2>webstock.dev</h2>
           <p>
-            <b>webstock.dev</b>は<a href="https://gist.github.com" target="_blank" rel="noopener noreferrer">Gist</a>をデータベースに、<br />
-            お気に入りのWebサイトをサムネと共にストックすることができます。
+            <b>webstock.dev</b> uses <a href="https://gist.github.com" target="_blank" rel="noopener noreferrer">Gist</a> as its database.<br />
+            You can stock your favorite web sites with thumbnails.
           </p>
         </div>
-        <h3>How <small>»<a href="/how">more</a></small></h3>
+        <h3>How</h3>
         <ol>
           <li>
             <h4>
-              <a href="https://gist.github.com" target="_blank" rel="noopener noreferrer">Gist</a>を作成
+              Create a <a href="https://gist.github.com" target="_blank" rel="noopener noreferrer">Gist</a>
             </h4>
             <p>
-              ファイル名は<code>webstock.json</code>、コンテンツには<code>[]</code>。
+              The file name is <code>webstock.json</code> and the content is <code>[]</code>.
             </p>
           </li>
           <li>
-            <h4>webstock.devにアクセス</h4>
+            <h4>Go to webstock.dev</h4>
             <p>
-              Githubのユーザー名を指定して、webstock.devにアクセス。<br/>
+              Access webstock.dev by specifying your Github username.<br/>
               DEMO:<a href="/2001y" target="_blank" rel="noopener noreferrer">webstock.dev/2001y</a>
             </p>
           </li>
           <li>
-            <h4>AccessTokenの登録</h4>
+            <h4>Registering AccessToken</h4>
             <p>
-              webstock.dev上の<code>nologin</code>をクリックして、AccessTokenを登録。<br />
-              これでサイトの登録/削除ができるようになります。
+              Click on <code>nologin</code> on webstock.dev and register your AccessToken.<br />
+              This will allow you to register/delete sites.
             </p>
           </li>
         </ol>

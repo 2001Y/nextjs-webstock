@@ -16,12 +16,16 @@ p {
   color: #535353;
   line-height: 1.5;
   margin-bottom: 1.5em;
-  font-weight: bold;
 }
 
 main a, #lang a {
   color: #007be0;
   padding: 0 .2em;
+}
+
+main a:hover, #lang a:hover {
+  color: #0022e0;
+  font-weight: bold;
 }
 
 #lang {
@@ -57,6 +61,7 @@ li h4 {
 li p {
   font-size: .8em;
   margin-bottom: .5em;
+  letter-spacing: .02em;
 }
 
 @media (max-width: 600px) {

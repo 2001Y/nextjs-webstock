@@ -61,7 +61,8 @@ export default function Result(props) {
         Htitleurl.classList.replace("loading", "err");
       });
   }
-  async function setGist(content,user) {
+  async function setGist(content, user) {
+    console.log("setGist");
     Htitleurl.classList.replace("done", "loading");
     let token = localStorage.getItem(user + "_token");
     await fetch("https://api.github.com/gists/" + localStorage.getItem(user + "_id"), {
@@ -100,52 +101,46 @@ export default function Result(props) {
     let content = JSON.parse(localStorage.getItem(user + "_webstock"));
     content.unshift(document.getElementById("add_url").value);
     document.getElementById("add_url").value = "";
-    view(content,user);
+    view(content, user);
     setGist(content,user);
     setTimeout(function () {
-      let backup = Hstock.innerHTML;
-      Hstock.innerHTML = "";
-      Hstock.innerHTML = backup;
+      view(content,user);
     }, 10000);
   }
 
   let viewState = 0;
-  async function view(content,user) {  
-    var stockList = "";
-    content.forEach(function(value) {
-      stockList += '<li class=site><div class=delete>×</div><img decoding="async" loading="lazy" src="https://s.wordpress.com/mshots/v1/'+value+'"></li>';
+  function view(content, user) {
+    console.log("view");
+    
+    document.querySelectorAll(".delete").forEach((elm, i) => {
+      // console.log("d"+i);
+      elm.removeEventListener("click", {
+        handleEvent: click,
+        i: i, user: user
+      });
     });
-    Hstock.innerHTML = "";
+      
+    let stockList = "";
+    content.forEach(function(value) {
+      stockList += '<a href="'+value+'" target="_blank" rel="noopener noreferrer"><li class=site><div class=delete>×</div><img decoding="async" loading="lazy" src="https://s.wordpress.com/mshots/v1/'+value+'"></li></a>';
+    });
     Hstock.innerHTML = stockList;
 
     localStorage.setItem(user + "_webstock", JSON.stringify(content));
   
     document.querySelectorAll(".delete").forEach((elm, i) => {
-
-      class X {
-        click(e) {
-          console.log('click', this, e.currentTarget);
-        }
-        add() {
-          console.log("do")
-          elm.addEventListener('click', this);
-        }
-        remove() {
-          console.log("remove")
-          elm.removeEventListener('click', this);
-        }
-        handleEvent() {
-          let content = JSON.parse(localStorage.getItem(user + "_webstock"));
-          content.splice(i, 1);
-          view(content,user);
-        }
-      }
-      var x = new X();
-      x.remove();
-      x.add();
-
+      // console.log("a"+i);
+      elm.addEventListener("click", {
+        handleEvent: click,
+        i: i, user: user
+      });
     });
-    viewState++;
+  }
+
+  function click() {
+    let content = JSON.parse(localStorage.getItem(this.user + "_webstock"));
+    content.splice(this.i, 1);
+    view(content,this.user);
   }
 
   let editState = false;

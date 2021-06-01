@@ -12,12 +12,15 @@ p {
   color: #535353;
   line-height: 1.5;
   margin-bottom: 1.5em;
-  font-weight: bold;
 }
-main,#lang {
+main,#lang,#tokenWin {
   a {
     color: #007be0;
     padding: 0 .2em;
+    &:hover {
+      color: #0022e0;
+      font-weight: bold;
+    }
   }
 }
 #lang {
@@ -46,6 +49,7 @@ li {
   p {
     font-size: .8em;
     margin-bottom: .5em;
+    letter-spacing: .02em;
   }
 }
 
