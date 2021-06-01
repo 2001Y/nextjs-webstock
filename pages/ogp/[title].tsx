@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const html = `<html>
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&family=Overpass+Mono:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&family=Overpass+Mono:wght@700&display=swap&text=はをデータベースに、お気に入りのサイトをサムネと共にストックすることができます。" rel="stylesheet">
         <style>
         :root {
           font-size: 2em;
