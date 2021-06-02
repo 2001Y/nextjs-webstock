@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function Result(props) {
@@ -19,7 +20,7 @@ export default function Result(props) {
         <link rel="alternate" href="https://webstock.dev/en" hrefLang="en" />
       </Head>
       <header>
-        <h1><a href="https://webstock.dev">webstock.dev/index</a></h1>
+        <h1><Link href="/"><a>webstock.dev/index</a></Link></h1>
         <div id="lang">
           <span>JA</span>/<a href="/en">EN</a>
         </div>
@@ -32,7 +33,7 @@ export default function Result(props) {
             お気に入りのWebサイトをサムネと共にストックすることができます。
           </p>
         </div>
-        <h3>How <small>»<a href="/how">more</a></small></h3>
+        <h3>How<small><Link href="/how"><a>»more</a></Link></small></h3>
         <ol>
           <li>
             <h4>

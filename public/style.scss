@@ -2,7 +2,7 @@ body {
   background: #f2f2eb;
 }
 * {
-  font-family: monospace,"游ゴシック", "Yu Gothic", YuGothic;
+  font-family: Courier,monospace,"游ゴシック", "Yu Gothic", YuGothic, sans-serif;;
 }
 img {
   width: 300px;
@@ -34,7 +34,6 @@ pre,code {
   margin: 0 .3em;
   color: #fff;
   background: rgb(46, 46, 46);
-  z-index: ;
 }
 ol {
   list-style-type: decimal-leading-zero;
@@ -90,16 +89,13 @@ input {
   }
 }
 #add {
-  margin-left: auto;
-  @media (max-width: 700px) {
-    width: 100vw;
-    padding: .7em;
-    background: #f2f2eb;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-  }
+  padding: .7em;
+  background: #f2f2eb;
+  position: fixed;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
 }
 
 #login {
@@ -165,7 +161,7 @@ input {
 }
 
 main {
-  padding: 1.5em;
+  padding: 0 1.5em;
   min-height: calc(100vh - 7.5em);
   &:not(#index) {
     display: flex;
@@ -186,9 +182,34 @@ main {
 .site {
   position: relative;
   margin: .5em;
-  img {
-    aspect-ratio: 4/3;
+  width: 300px;
+  height: 225px;
+  background: rgba(0, 0, 0, 0.04);
+  // content-visibility: auto;
+  // contain-intrinsic-size: 225px;
+  // contain: strict;
+  a {
+    pointer-events : none;
+    padding: 0;
+    display: block;
   }
+  img {
+    width: 300px;
+    height: 225px;
+  }
+}
+.comment {
+  min-height: 1em;
+  box-sizing: content-box;
+  padding: .4em .6em;
+  color: #fff;
+  background: rgba(0,0,0,.3);
+  font-size: .6em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  pointer-events: auto;
 }
 #edit {
   cursor: pointer;
@@ -196,6 +217,17 @@ main {
 .noedit {
   .delete {
     visibility:hidden;
+  }
+  .comment {
+    pointer-events : none;
+    &:empty {
+      padding: 0;
+    }
+  }
+  .site {
+    a {
+      pointer-events: auto;
+    }
   }
 }
 .delete {
