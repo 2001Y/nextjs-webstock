@@ -30,7 +30,7 @@ export default function Result(props) {
           <h2>webstock.dev</h2>
           <p>
             <b>webstock.dev</b>は<a href="https://gist.github.com" target="_blank" rel="noopener noreferrer">Gist</a>をデータベースに、<br />
-            お気に入りのWebサイトをサムネと共にストックすることができます。
+            お気に入りのWebサイトをコメントと共にストックすることができます。
           </p>
         </div>
         <h3>How<small><Link href="/how"><a>»more</a></Link></small></h3>

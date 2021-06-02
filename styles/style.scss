@@ -97,6 +97,9 @@ input {
   transform: translateX(-50%);
   z-index: 999;
 }
+::placeholder {
+  font-weight: normal;
+}
 
 #login {
   font-size: .7em;
@@ -185,9 +188,14 @@ main {
   width: 300px;
   height: 225px;
   background: rgba(0, 0, 0, 0.04);
-  // content-visibility: auto;
-  // contain-intrinsic-size: 225px;
-  // contain: strict;
+  content-visibility: auto;
+  contain-intrinsic-size: 225px;
+  contain: strict;
+  &:hover{
+    img {
+      opacity: .7;
+    }
+  }
   a {
     pointer-events : none;
     padding: 0;
@@ -198,10 +206,16 @@ main {
     height: 225px;
   }
 }
-.comment {
+.memo {
+  display: block;
   min-height: 1em;
+  line-height: 1em;
+  vertical-align: bottom;
+  &:empty {
+    min-width: 5em;
+  }
   box-sizing: content-box;
-  padding: .4em .6em;
+  padding: .4em;
   color: #fff;
   background: rgba(0,0,0,.3);
   font-size: .6em;
@@ -218,10 +232,11 @@ main {
   .delete {
     visibility:hidden;
   }
-  .comment {
+  .memo {
     pointer-events : none;
     &:empty {
       padding: 0;
+      min-width: 0;
     }
   }
   .site {

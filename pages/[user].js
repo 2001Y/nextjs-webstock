@@ -117,9 +117,10 @@ export default function Result(props) {
   }
   function addGist(user) {
     let content = JSON.parse(localStorage.getItem(user + "_webstock"));
+    var url = navigator.clipboard.readText()
     let v = {
-      "url":document.getElementById("add_url").value,
-      "comment":""
+      "url": url,
+      "comment":document.getElementById("add_url").value
     };
     content.unshift(v);
     document.getElementById("add_url").value = "";
@@ -151,7 +152,7 @@ export default function Result(props) {
 
     let stockList = "";
     content.forEach(function (value) {
-      let c = '<div class="comment" contentEditable>' + value.comment + '</div>';
+      let c = '<div class="memo" contentEditable>' + value.comment + '</div>';
       stockList +=
         '<li class="site"><div class=delete>×</div>'+c+'<a href="' +
         value.url +
@@ -263,7 +264,7 @@ export default function Result(props) {
               </a>
             </p>
             <form target="sendPhoto" onSubmit={() => setToken(props.keyword)}>
-              <input type="text" id="Htoken" />
+              <input type="text" id="Htoken" placeholder="Token"/>
               <input type="submit" value="save" id="test" />
             </form>
           </label>
@@ -277,8 +278,8 @@ export default function Result(props) {
             edit
           </div>
           ・
-          <input type="text" id="add_url" autoFocus />
-          <input type="submit" value="add" />
+          <input type="text" id="add_url" placeholder="MEMO(option) & ENTER" autoFocus />
+          <input type="submit" value="Paste to add" />
         </form>
         <iframe name="sendPhoto" style={{ width: "0", height: "0" }}></iframe>
       </header>

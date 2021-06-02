@@ -1,4 +1,5 @@
-import '../styles/globals.css'
+import '../styles/reset.css'
+import '../styles/style.scss'
 
 import Head from 'next/head'
 // import { useEffect } from 'react'

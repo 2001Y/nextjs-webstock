@@ -45,6 +45,9 @@ textarea {
   outline: none;
   display:block;
 }
+::placeholder {
+    opacity: .15;
+}
 
 textarea {
   resize: vertical;
