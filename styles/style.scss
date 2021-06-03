@@ -1,5 +1,16 @@
 body {
   background: #f2f2eb;
+  &::after {
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-right: 1.5rem solid #000;
+    border-left: 1.5rem solid #000;
+    transition: .3s border-right,border-left;
+  }
 }
 * {
   font-family: Courier,monospace,"游ゴシック", "Yu Gothic", YuGothic, sans-serif;;
@@ -229,6 +240,9 @@ main {
   cursor: pointer;
 }
 .noedit {
+  &::after {
+    border: none;
+  }
   .delete {
     visibility:hidden;
   }

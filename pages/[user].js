@@ -117,10 +117,9 @@ export default function Result(props) {
   }
   function addGist(user) {
     let content = JSON.parse(localStorage.getItem(user + "_webstock"));
-    var url = navigator.clipboard.readText()
     let v = {
-      "url": url,
-      "comment":document.getElementById("add_url").value
+      "url": document.getElementById("add_url").value,
+      "comment":""
     };
     content.unshift(v);
     document.getElementById("add_url").value = "";
@@ -204,8 +203,9 @@ export default function Result(props) {
     } else {
       edit.innerHTML = "edit";
       let content = JSON.parse(localStorage.getItem(user + "_webstock"));
-      setGist(content, user);
+      setGist(content, user);6
     }
+    console.log(editS)
   }
 
   return (
@@ -278,8 +278,8 @@ export default function Result(props) {
             edit
           </div>
           ・
-          <input type="text" id="add_url" placeholder="MEMO(option) & ENTER" autoFocus />
-          <input type="submit" value="Paste to add" />
+          <input type="text" id="add_url" placeholder="url" autoFocus />
+          <input type="submit" value="add" />
         </form>
         <iframe name="sendPhoto" style={{ width: "0", height: "0" }}></iframe>
       </header>
