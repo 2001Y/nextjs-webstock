@@ -7,9 +7,10 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    border-right: 1.5rem solid #000;
-    border-left: 1.5rem solid #000;
+    border-right: 1.5rem solid #eb0404;
+    border-left: 1.5rem solid #eb0404;
     transition: .3s border-right,border-left;
+    pointer-events: none;
   }
 }
 * {
@@ -83,13 +84,13 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  form {
+    display: flex;
+    justify-content: center;
+  }
 }
 h1 {
   font-size: 1.5em;
-}
-form {
-  display: flex;
-  justify-content: center;
 }
 input {
   width: 15em;
@@ -186,6 +187,17 @@ main {
 #index {
   max-width: 700px;
   margin: auto;
+}
+.loginButton {
+  font-size: 1.2em;
+  padding: .1em;
+  margin-top: 1.5em;
+  font-weight: bold;
+  color: #fff;
+  background: #000;
+  &:hover {
+    opacity: .5;
+  }
 }
 #Hstock {
   display: flex;

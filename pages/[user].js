@@ -141,7 +141,7 @@ export default function Result(props) {
         user: user,
       });
     });
-    document.querySelectorAll(".comment").forEach((elm, i) => {
+    document.querySelectorAll(".memo").forEach((elm, i) => {
       elm.removeEventListener("blur", {
         handleEvent: blur,
         i: i,
@@ -149,49 +149,56 @@ export default function Result(props) {
       });
     });
 
-    let stockList = "";
-    content.forEach(function (value) {
-      let c = '<div class="memo" contentEditable>' + value.comment + '</div>';
-      stockList +=
-        '<li class="site"><div class=delete>×</div>'+c+'<a href="' +
-        value.url +
-        '" target="_blank" rel="noopener noreferrer"><img decoding="async" loading="lazy" src="https://s.wordpress.com/mshots/v1/' +
-        value.url +
-        '"></a></li>';
-    });
-    Hstock.innerHTML = stockList;
-
-    localStorage.setItem(user + "_webstock", JSON.stringify(content));
-
-    document.querySelectorAll(".delete").forEach((elm, i) => {
-      elm.addEventListener("click", {
-        handleEvent: click,
-        i: i,
-        user: user,
+    if (content.length) {
+      let stockList = "";
+      content.forEach(function (value) {
+        let c = '<div class="memo" contentEditable>' + value.comment + '</div>';
+        stockList +=
+          '<li class="site"><div class=delete>×</div>'+c+'<a href="' +
+          value.url +
+          '" target="_blank" rel="noopener noreferrer"><img decoding="async" loading="lazy" src="https://s.wordpress.com/mshots/v1/' +
+          encodeURIComponent(value.url) +
+          '"></a></li>';
       });
-    });
-    document.querySelectorAll(".comment").forEach((elm, i) => {
-      elm.addEventListener("blur", {
-        handleEvent: blur,
-        i: i,
-        user: user
+      Hstock.innerHTML = stockList;
+  
+      localStorage.setItem(user + "_webstock", JSON.stringify(content));
+  
+      document.querySelectorAll(".delete").forEach((elm, i) => {
+        elm.addEventListener("click", {
+          handleEvent: click,
+          i: i,
+          user: user,
+        });
       });
-    });
+      document.querySelectorAll(".memo").forEach((elm, i) => {
+        elm.addEventListener("blur", {
+          handleEvent: blur,
+          i: i,
+          user: user
+        });
+      });
+    } else {
+      Hstock.innerHTML = "Hello! Let's start!";
+    }
   }
 
   function click() {
     let content = JSON.parse(localStorage.getItem(this.user + "_webstock"));
     content.splice(this.i, 1);
+    localStorage.setItem(this.user + "_edit", "ture");
     view(content, this.user);
   }
   function blur() {
-    if (document.querySelectorAll(".comment")[this.i].innerHTML == "<br>") {
-      document.querySelectorAll(".comment")[this.i].innerHTML = "";
+    let commentV = document.querySelectorAll(".memo")[this.i].innerText;
+    if (commentV) {
+      let content = JSON.parse(localStorage.getItem(this.user + "_webstock"));
+      content[this.i].comment = commentV;
+      localStorage.setItem(this.user + "_webstock", JSON.stringify(content));
+      localStorage.setItem(this.user + "_edit", "ture");
+    } else {
+      document.querySelectorAll(".memo")[this.i].innerHTML = "";
     }
-    let comment = document.querySelectorAll(".comment")[this.i].innerText;
-    let content = JSON.parse(localStorage.getItem(this.user + "_webstock"));
-    content[this.i].comment = comment;
-    localStorage.setItem(this.user + "_webstock", JSON.stringify(content));
   }
 
   let editState = false;
@@ -202,10 +209,13 @@ export default function Result(props) {
       edit.innerHTML = "done";
     } else {
       edit.innerHTML = "edit";
-      let content = JSON.parse(localStorage.getItem(user + "_webstock"));
-      setGist(content, user);6
+      if (localStorage.getItem(user + "_edit")) {
+        let content = JSON.parse(localStorage.getItem(user + "_webstock"));
+        setGist(content, user);
+        localStorage.removeItem(user + "_edit");
+      }
     }
-    console.log(editS)
+    // console.log(editS)
   }
 
   return (

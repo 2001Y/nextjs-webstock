@@ -1,35 +1,21 @@
+import { Provider } from "next-auth/client";
+import { AppProps } from "next/app";
+
 import '../styles/reset.css'
 import '../styles/style.scss'
 
 import Head from 'next/head'
-// import { useEffect } from 'react'
-// import { useRouter } from 'next/router'
-// import * as gtag from '../lib/gtag'
 
-function MyApp({ Component, pageProps }) {
-  //   const router = useRouter()
-  //   useEffect(() => {
-  //     // const handleRouteChange = (url) => {
-  //     //   gtag.pageview(url)
-  //     // }
-  //     // https://zenn.dev/okumura_daiki/articles/839685a90c06db
-  //     const handleRouteChange = (url, { shallow }) => {
-  //       if (!shallow) { gtag.pageview(url) }
-  //     }
-  //     router.events.on('routeChangeComplete', handleRouteChange)
-  //     return () => {
-  //       router.events.off('routeChangeComplete', handleRouteChange)
-  //     }
-  //   }, [router.events])
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <Provider session={pageProps.session}>
       <Head>
           <meta charSet="utf-8"/>
           <meta name="robots" content="index,follow,archive" />
           <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
           
-          <link rel="stylesheet" href="reset.css"/>
-          <link rel="stylesheet" href="style.css"/>
+          {/* <link rel="stylesheet" href="reset.css"/>
+          <link rel="stylesheet" href="style.css"/> */}
           <meta httpEquiv="x-dns-prefetch-control" content="on" />
           
           <title key="title">webstock.dev | Stock a website on your gist.</title>
@@ -44,8 +30,6 @@ function MyApp({ Component, pageProps }) {
           <meta property="og:type" content="website"/>
         </Head>
       <Component {...pageProps} />
-    </>
-  )
+    </Provider>
+  );
 }
-
-export default MyApp

@@ -33,7 +33,7 @@ class MyDocument extends Document {
           <Main />
           <footer>
             <div>
-              <a href="https://webstock.dev" target="_blank">
+              <a href="/" target="_blank">
                 ©︎webstock.dev
               </a>{" "}
               <a href="https://2001y.me" target="_blank">
