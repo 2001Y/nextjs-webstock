@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }): Promise<any> => {
-  const { title } = params
+  const title = params
 
   if (!title) {
     res.statusCode = 400
