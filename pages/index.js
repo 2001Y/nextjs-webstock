@@ -59,15 +59,27 @@ const Page = () => {
         </div>
 
         {useEffect(() => {
-          if (session) {
-            newPage(session.user.name, session.accessToken);
-            // signOut();
-          }
+          session && (
+            <>
+              {session.user.name} <br />
+              AccessToken : {session.accessToken} <br />
+              <button onClick={() => signOut()}>Sign out</button>
+            </>
+          ) && newPage(session.user.name, session.accessToken)
+
+          !session && (
+            <>
+              <button className="loginButton" onClick={() => signIn()}>
+                Signin with GitHub
+              </button>
+            </>
+          )
+
         }, [])}
 
-        <button className="loginButton" onClick={() => signIn()}>
+        {/* <button className="loginButton" onClick={() => signIn()}>
           Signin with GitHub
-        </button>
+        </button> */}
 
         <p>
           Demo:
@@ -75,7 +87,7 @@ const Page = () => {
             <a>webstock.dev/2001y</a>
           </Link>
         </p>
-
+        
         <h3>Share</h3>
         <p>
           <a
