@@ -61,7 +61,7 @@ const Page = () => {
         {useEffect(() => {
           if (session) {
             newPage(session.user.name, session.accessToken);
-            signOut();
+            // signOut();
           }
         }, [])}
 
