@@ -60,24 +60,9 @@ const Page = () => {
 
         {!session && (
           <>
-            <form
-              action="http://localhost:3000/api/auth/signin/github"
-              method="POST"
-            >
-              <input
-                type="hidden"
-                name="csrfToken"
-                value="1b960ebac0700c3349103e0f207b0516f030af673f2c2c7d6abc502f1ee6e0a6"
-              />
-              <input
-                type="hidden"
-                name="callbackUrl"
-                value="http://localhost:3000/"
-              />
-              <button type="submit" className="loginButton">
-                Signin with GitHub
-              </button>
-            </form>
+            <button className="loginButton" onClick={() => signIn()}>
+              Signin with GitHub
+            </button>
           </>
         )}
         {session && process.browser &&  (
