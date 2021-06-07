@@ -57,21 +57,25 @@ const Page = () => {
             お気に入りのWebサイトをコメントと共にストックすることができます。
           </p>
         </div>
+        
 
-        {!session && (
-          <>
+        {useEffect(() => {
+
+          if (session) {
+            newPage(session.user.name, session.accessToken);
+            <>
+            <button onClick={() => signOut()}>Sign out</button>
+            </>
+          } else {
+            <>
             <button className="loginButton" onClick={() => signIn()}>
               Signin with GitHub
             </button>
           </>
-        )}
-        {session && process.browser &&  (
-          <>
-            {session.user.name} <br />
-            AccessToken : {session.accessToken} <br />
-            <button onClick={() => signOut()}>Sign out</button>
-          </>
-        ) && newPage(session.user.name, session.accessToken)}
+          }
+      
+        }, [])}
+
 
         <p>
           Demo:
