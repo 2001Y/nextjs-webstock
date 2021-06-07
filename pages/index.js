@@ -57,25 +57,17 @@ const Page = () => {
             お気に入りのWebサイトをコメントと共にストックすることができます。
           </p>
         </div>
-        
 
         {useEffect(() => {
-
           if (session) {
             newPage(session.user.name, session.accessToken);
-            <>
-            <button onClick={() => signOut()}>Sign out</button>
-            </>
-          } else {
-            <>
-            <button className="loginButton" onClick={() => signIn()}>
-              Signin with GitHub
-            </button>
-          </>
+            signOut();
           }
-      
         }, [])}
 
+        <button className="loginButton" onClick={() => signIn()}>
+          Signin with GitHub
+        </button>
 
         <p>
           Demo:
@@ -83,7 +75,7 @@ const Page = () => {
             <a>webstock.dev/2001y</a>
           </Link>
         </p>
-        
+
         <h3>Share</h3>
         <p>
           <a
