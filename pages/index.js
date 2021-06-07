@@ -67,19 +67,19 @@ const Page = () => {
             </>
           ) && newPage(session.user.name, session.accessToken)
 
-          !session && (
-            <>
-              <button className="loginButton" onClick={() => signIn()}>
-                Signin with GitHub
-              </button>
-            </>
-          )
+          // !session && (
+          //   <>
+          //     <button className="loginButton" onClick={() => signIn()}>
+          //       Signin with GitHub
+          //     </button>
+          //   </>
+          // )
 
         }, [])}
 
-        {/* <button className="loginButton" onClick={() => signIn()}>
+        <button className="loginButton" onClick={() => signIn()}>
           Signin with GitHub
-        </button> */}
+        </button>
 
         <p>
           Demo:
