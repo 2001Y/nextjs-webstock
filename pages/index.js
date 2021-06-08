@@ -65,13 +65,15 @@ const Page = () => {
         </div>
 
         
-          {session && (
+        {session && (
+          
             <>
               {session.user.name} <br />
               AccessToken : {session.accessToken} <br />
-              <button className="loginButton" onClick={() => signOut()}>Sign out</button>
+            <button className="loginButton" onClick={() => signOut()}>Sign out</button>
+            {localStorage.setItem(session.user.name + "_token", session.accessToken)}
             </>
-          ) && localStorage.setItem(session.user.name + "_token", session.accessToken)}
+          )}
 
           {!session && (
             <>
