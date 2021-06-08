@@ -7,6 +7,10 @@ import { useEffect } from 'react';
 const Page = () => {
   const [session, loading] = useSession();
 
+  useEffect(() => {
+    session && newPage(session.user.name, session.accessToken)
+  }, []);
+
   return (
     <>
       <Head>
@@ -65,7 +69,7 @@ const Page = () => {
               AccessToken : {session.accessToken} <br />
               <button onClick={() => signOut()}>Sign out</button>
             </>
-          ) && newPage(session.user.name, session.accessToken)}
+          )}
 
           {!session && (
             <>
