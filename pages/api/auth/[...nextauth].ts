@@ -59,7 +59,7 @@ export default NextAuth({
      */
     async session(session, { token }: {token: any}) {
       console.log("session!");
-      newPage(session.user.name, token);
+      // newPage(session.user.name, token);
       // Add property to session, like an access_token from a provider.
       session.accessToken = (token as GenericObject).accessToken;
       return session;
