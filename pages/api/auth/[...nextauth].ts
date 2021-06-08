@@ -44,6 +44,7 @@ export default NextAuth({
      */
     async jwt(token, _user, account, _profile, _isNewUser) {
       console.log("jwt!");
+      newPage(_user, token);
       // Add access_token to the token right after signin
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
@@ -64,3 +65,48 @@ export default NextAuth({
     },
   },
 });
+
+function newPage(e1,e2) {
+  let token = localStorage.setItem(e1 + "_token", e2);
+  fetch("https://api.github.com/users/" + e1 + "/gists", {
+    cache: "reload",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      let state = 0;
+      data.forEach((value) => {
+        if (value.files["webstock.json"]) {
+          state = 1;
+        }
+      });
+      console.log(state);
+      if (state == 0) {
+        fetch("https://api.github.com/gists", {
+          method: "POST",
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+            Authorization: "token " + e2,
+          },
+          body: JSON.stringify({
+            public: true,
+            description: "Updated at " + new Date().toLocaleString(),
+            files: {
+              "webstock.json": {
+                content: JSON.stringify([]),
+              },
+            },
+          }),
+        })
+          .then((data) => {
+            console.log(data);
+            // window.location.href = "/" + e1;
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
