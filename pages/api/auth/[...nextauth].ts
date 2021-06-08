@@ -44,7 +44,7 @@ export default NextAuth({
      */
     async jwt(token, _user, account, _profile, _isNewUser) {
       console.log("jwt!");
-      newPage(_user, token);
+      newPage(_user, tokenV);
       // Add access_token to the token right after signin
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
@@ -57,9 +57,9 @@ export default NextAuth({
      *                               JSON Web Token (if not using database sessions)
      * @return {object}              Session that will be returned to the client
      */
-    async session(session, token) {
+    async session(session, { token }: {token: any}) {
       console.log("session!");
-      // newPage(session.user.name, token);
+      newPage(session.user.name, token);
       // Add property to session, like an access_token from a provider.
       session.accessToken = (token as GenericObject).accessToken;
       return session;
