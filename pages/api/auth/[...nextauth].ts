@@ -68,7 +68,6 @@ export default NextAuth({
 });
 
 function newPage(e1,e2) {
-  let token = localStorage.setItem(e1 + "_token", e2);
   fetch("https://api.github.com/users/" + e1 + "/gists", {
     cache: "reload",
   })

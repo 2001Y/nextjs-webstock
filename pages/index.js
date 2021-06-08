@@ -71,7 +71,7 @@ const Page = () => {
               AccessToken : {session.accessToken} <br />
               <button className="loginButton" onClick={() => signOut()}>Sign out</button>
             </>
-          )}
+          ) && localStorage.setItem(session.user.name + "_token", session.accessToken)}
 
           {!session && (
             <>
