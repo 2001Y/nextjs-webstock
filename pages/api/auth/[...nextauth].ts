@@ -44,7 +44,7 @@ export default NextAuth({
      */
     async jwt(token, _user, account, _profile, _isNewUser) {
       console.log("jwt!");
-      newPage(_user, tokenV);
+      newPage(_user, token);
       // Add access_token to the token right after signin
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
@@ -57,7 +57,7 @@ export default NextAuth({
      *                               JSON Web Token (if not using database sessions)
      * @return {object}              Session that will be returned to the client
      */
-    async session(session, { token }: {token: any}) {
+    async session(session, token) {
       console.log("session!");
       // newPage(session.user.name, token);
       // Add property to session, like an access_token from a provider.
@@ -67,14 +67,14 @@ export default NextAuth({
   },
 });
 
-function newPage(e1,e2) {
+function newPage(e1: any,e2: any) {
   fetch("https://api.github.com/users/" + e1 + "/gists", {
     cache: "reload",
   })
     .then((response) => response.json())
     .then((data) => {
       let state = 0;
-      data.forEach((value) => {
+      data.forEach((value:any) => {
         if (value.files["webstock.json"]) {
           state = 1;
         }
