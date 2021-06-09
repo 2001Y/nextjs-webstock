@@ -44,13 +44,11 @@ export default NextAuth({
      */
     async jwt(token, _user, account, _profile, _isNewUser) {
       console.log("jwt!");
-      // newPage(_user, token);
       // Add access_token to the token right after signin
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
       }
       newPage(_user.name, account.accessToken);
-      window.location.href = "/" + _user.name;
       return token;
     },
     /**
@@ -63,7 +61,6 @@ export default NextAuth({
       console.log("session!");
       // Add property to session, like an access_token from a provider.
       session.accessToken = (token as GenericObject).accessToken;
-      // newPage(session.user.name, session.accessToken);
       return session;
     },
   },
