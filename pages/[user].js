@@ -12,6 +12,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Result(props) {
+  let ram = Math.floor( Math.random() * 11 ) ;
   useEffect(() => {
     const user = props.keyword;
     getGistList(user);
@@ -29,7 +30,7 @@ export default function Result(props) {
       console.log("id > view");
     } else {
       await (
-        await fetch("https://api.github.com/users/" + user + "/gists", {
+        await fetch("https://api.github.com/users/" + user + "/gists?" + ram, {
           cache: "reload",
         })
       )

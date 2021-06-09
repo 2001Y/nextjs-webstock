@@ -122,7 +122,7 @@ export default Page;
 function newPage(e1,e2) {
   if (!localStorage.getItem(e1 + "_token", e2)) {
     let token = localStorage.setItem(e1 + "_token", e2);
-    fetch("https://api.github.com/users/" + e1 + "/gists", {
+    fetch("https://api.github.com/users/" + e1 + "/gists?login", {
       cache: "reload",
     })
       .then((response) => response.json())
