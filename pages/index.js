@@ -72,7 +72,7 @@ const Page = () => {
               AccessToken : {session.accessToken} <br />
             <button className="loginButton" onClick={() => signOut()}>Sign out</button>
             {localStorage.setItem(session.user.name + "_token", session.accessToken)}
-            {window.location.href = "/" + _user.name;}
+            {window.location.href = "/" + _user.name}
             </>
           )}
 
