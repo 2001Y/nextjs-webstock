@@ -23,7 +23,6 @@ export default NextAuth({
      */
     async signIn(_user, _account, _profile) {
       console.log("signIn!");
-      newPage(_user.name, _account.accessToken);
       return true;
     },
     /**
@@ -49,7 +48,7 @@ export default NextAuth({
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
       }
-      // newPage(_user.name, account.accessToken);
+      // await newPage(_user.name, account.accessToken);
       return token;
     },
     /**
@@ -67,8 +66,8 @@ export default NextAuth({
   },
 });
 
-function newPage(e1: any,e2: any) {
-  fetch("https://api.github.com/users/" + e1 + "/gists", {
+async function newPage(e1: any,e2: any) {
+  await fetch("https://api.github.com/users/" + e1 + "/gists", {
     cache: "reload",
   })
     .then((response) => response.json())
@@ -79,7 +78,7 @@ function newPage(e1: any,e2: any) {
           state = 1;
         }
       });
-      console.log(state);
+      // console.log(state);
       if (state == 0) {
         fetch("https://api.github.com/gists", {
           method: "POST",
@@ -107,5 +106,5 @@ function newPage(e1: any,e2: any) {
     })
     .catch((err) => {
       console.error(err);
-    });
+    })
 }

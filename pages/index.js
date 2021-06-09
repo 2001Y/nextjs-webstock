@@ -7,11 +7,11 @@ import { useEffect } from 'react';
 const Page = () => {
   const [session, loading] = useSession();
 
-  useEffect(() => {
-    if (session) {
-      newPage(session.user.name, session.accessToken)
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (session) {
+  //     newPage(session.user.name, session.accessToken)
+  //   }
+  // }, []);
 
   return (
     <>
@@ -68,11 +68,10 @@ const Page = () => {
         {session && (
           
             <>
-              {session.user.name} <br />
-              AccessToken : {session.accessToken} <br />
             <button className="loginButton" onClick={() => signOut()}>Sign out</button>
-            {localStorage.setItem(session.user.name + "_token", session.accessToken)}
-            {window.location.href = "/" + _user.name}
+            {/* {localStorage.setItem(session.user.name + "_token", session.accessToken)} */}
+            {newPage(session.user.name, session.accessToken)}
+            {/* {window.location.href = "/" + session.user.name} */}
             </>
           )}
 
@@ -120,47 +119,49 @@ const Page = () => {
 
 export default Page;
 
-// function newPage(e1,e2) {
-//     let token = localStorage.setItem(e1 + "_token", e2);
-//     fetch("https://api.github.com/users/" + e1 + "/gists", {
-//       cache: "reload",
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         let state = 0;
-//         data.forEach((value) => {
-//           if (value.files["webstock.json"]) {
-//             state = 1;
-//           }
-//         });
-//         console.log(state);
-//         if (state == 0) {
-//           fetch("https://api.github.com/gists", {
-//             method: "POST",
-//             headers: {
-//               Accept: "application/vnd.github.v3+json",
-//               Authorization: "token " + e2,
-//             },
-//             body: JSON.stringify({
-//               public: true,
-//               description: "Updated at " + new Date().toLocaleString(),
-//               files: {
-//                 "webstock.json": {
-//                   content: JSON.stringify([]),
-//                 },
-//               },
-//             }),
-//           })
-//             .then((data) => {
-//               console.log(data);
-//               // window.location.href = "/" + e1;
-//             })
-//             .catch((err) => {
-//               console.error(err);
-//             });
-//         }
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   }
+function newPage(e1,e2) {
+  if (!localStorage.getItem(e1 + "_token", e2)) {
+    let token = localStorage.setItem(e1 + "_token", e2);
+    fetch("https://api.github.com/users/" + e1 + "/gists", {
+      cache: "reload",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        let state = 0;
+        data.forEach((value) => {
+          if (value.files["webstock.json"]) {
+            state = 1;
+          }
+        });
+        console.log(state);
+        if (state == 0) {
+          fetch("https://api.github.com/gists", {
+            method: "POST",
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+              Authorization: "token " + e2,
+            },
+            body: JSON.stringify({
+              public: true,
+              description: "Updated at " + new Date().toLocaleString(),
+              files: {
+                "webstock.json": {
+                  content: JSON.stringify([]),
+                },
+              },
+            }),
+          })
+            .then((data) => {
+              console.log(data);
+              window.location.href = "/" + e1;
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  }
