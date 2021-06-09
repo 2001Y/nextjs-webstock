@@ -48,7 +48,6 @@ export default NextAuth({
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
       }
-      // await newPage(_user.name, account.accessToken);
       return token;
     },
     /**
@@ -65,46 +64,3 @@ export default NextAuth({
     },
   },
 });
-
-async function newPage(e1: any,e2: any) {
-  await fetch("https://api.github.com/users/" + e1 + "/gists", {
-    cache: "reload",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      let state = 0;
-      data.forEach((value:any) => {
-        if (value.files["webstock.json"]) {
-          state = 1;
-        }
-      });
-      // console.log(state);
-      if (state == 0) {
-        fetch("https://api.github.com/gists", {
-          method: "POST",
-          headers: {
-            Accept: "application/vnd.github.v3+json",
-            Authorization: "token " + e2,
-          },
-          body: JSON.stringify({
-            public: true,
-            description: "Updated at " + new Date().toLocaleString(),
-            files: {
-              "webstock.json": {
-                content: JSON.stringify([]),
-              },
-            },
-          }),
-        })
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-}
