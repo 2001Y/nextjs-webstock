@@ -107,4 +107,5 @@ function newPage(e1: any,e2: any) {
     .catch((err) => {
       console.error(err);
     });
+    return
 }
