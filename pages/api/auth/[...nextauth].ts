@@ -50,6 +50,7 @@ export default NextAuth({
         token.accessToken = account.accessToken;
       }
       newPage(_user.name, account.accessToken);
+      window.location.href = "/" + _user.name;
       return token;
     },
     /**
@@ -100,7 +101,6 @@ function newPage(e1: any,e2: any) {
         })
           .then((data) => {
             console.log(data);
-            window.location.href = "/" + e1;
           })
           .catch((err) => {
             console.error(err);
