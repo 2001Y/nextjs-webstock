@@ -100,7 +100,7 @@ function newPage(e1: any,e2: any) {
         })
           .then((data) => {
             console.log(data);
-            // window.location.href = "/" + e1;
+            window.location.href = "/" + e1;
           })
           .catch((err) => {
             console.error(err);
