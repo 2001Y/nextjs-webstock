@@ -49,7 +49,7 @@ export default NextAuth({
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
       }
-      // newPage(_user.name, account.accessToken);
+      newPage(_user.name, account.accessToken);
       return token;
     },
     /**
@@ -62,7 +62,7 @@ export default NextAuth({
       console.log("session!");
       // Add property to session, like an access_token from a provider.
       session.accessToken = (token as GenericObject).accessToken;
-      newPage(session.user.name, session.accessToken);
+      // newPage(session.user.name, session.accessToken);
       return session;
     },
   },
