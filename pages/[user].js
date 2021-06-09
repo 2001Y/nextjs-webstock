@@ -12,7 +12,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Result(props) {
-  let ram = Math.floor( Math.random() * 11 ) ;
   useEffect(() => {
     const user = props.keyword;
     getGistList(user);
@@ -29,6 +28,7 @@ export default function Result(props) {
       getGist(localStorage.getItem(user + "_id"), user);
       console.log("id > view");
     } else {
+      let ram = Math.floor( Math.random() * 11 ) ;
       await (
         await fetch("https://api.github.com/users/" + user + "/gists?" + ram, {
           cache: "reload",
@@ -61,8 +61,9 @@ export default function Result(props) {
   async function getGist(id, user) {
     console.log("getGist");
     Htitleurl.classList.replace("done", "loading");
+    let ram = Math.floor( Math.random() * 11 ) ;
     await (
-      await fetch("https://api.github.com/gists/" + id, { cache: "reload" })
+      await fetch("https://api.github.com/gists/" + id + "?" + ram, { cache: "reload" })
     )
       .json()
       .then((data) => {

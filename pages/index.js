@@ -64,36 +64,36 @@ const Page = () => {
           </p>
         </div>
 
-        
         {session && (
-          
-            <>
-            <button className="loginButton" onClick={() => signOut()}>Sign out</button>
+          <>
+            <p id="jump">ページを作成中...</p>
+            <button className="loginButton" onClick={() => signOut()}>
+              Sign out
+            </button>
             {/* {localStorage.setItem(session.user.name + "_token", session.accessToken)} */}
             {newPage(session.user.name, session.accessToken)}
             {/* {window.location.href = "/" + session.user.name} */}
-            </>
-          )}
+          </>
+        )}
 
         {!session && (
-            <>
-              <button className="loginButton" onClick={() => signIn()}>
-                Signin with GitHub
-              </button>
-            </>
-          )}
+          <>
+            <button className="loginButton" onClick={() => signIn()}>
+              Signin with GitHub
+            </button>
+            <p>
+              Demo:
+              <Link href="/2001y">
+                <a>webstock.dev/2001y</a>
+              </Link>
+            </p>
+          </>
+        )}
 
         {/* <button className="loginButton" onClick={() => signIn()}>
           Signin with GitHub
         </button> */}
 
-        <p>
-          Demo:
-          <Link href="/2001y">
-            <a>webstock.dev/2001y</a>
-          </Link>
-        </p>
-        
         <h3>Share</h3>
         <p>
           <a
@@ -119,49 +119,52 @@ const Page = () => {
 
 export default Page;
 
-function newPage(e1,e2) {
-  if (!localStorage.getItem(e1 + "_token", e2)) {
-    let token = localStorage.setItem(e1 + "_token", e2);
-    fetch("https://api.github.com/users/" + e1 + "/gists?login", {
-      cache: "reload",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        let state = 0;
-        data.forEach((value) => {
-          if (value.files["webstock.json"]) {
-            state = 1;
-          }
-        });
-        console.log(state);
-        if (state == 0) {
-          fetch("https://api.github.com/gists", {
-            method: "POST",
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-              Authorization: "token " + e2,
-            },
-            body: JSON.stringify({
-              public: true,
-              description: "Updated at " + new Date().toLocaleString(),
-              files: {
-                "webstock.json": {
-                  content: JSON.stringify([]),
-                },
-              },
-            }),
-          })
-            .then((data) => {
-              console.log(data);
-              window.location.href = "/" + e1;
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
+function newPage(e1, e2) {
+  useEffect(() => {
+    if (!localStorage.getItem(e1 + "_token", e2)) {
+      let token = localStorage.setItem(e1 + "_token", e2);
+      fetch("https://api.github.com/users/" + e1 + "/gists?login", {
+        cache: "reload",
       })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+        .then((response) => response.json())
+        .then((data) => {
+          let state = 0;
+          data.forEach((value) => {
+            if (value.files["webstock.json"]) {
+              state = 1;
+            }
+          });
+          console.log(state);
+          if (state == 0) {
+            fetch("https://api.github.com/gists", {
+              method: "POST",
+              headers: {
+                Accept: "application/vnd.github.v3+json",
+                Authorization: "token " + e2,
+              },
+              body: JSON.stringify({
+                public: true,
+                description: "Updated at " + new Date().toLocaleString(),
+                files: {
+                  "webstock.json": {
+                    content: JSON.stringify([]),
+                  },
+                },
+              }),
+            })
+              .then((data) => {
+                console.log(data);
+                window.location.href = "/" + e1;
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+    jump.innerHTML =  "あなたのwebstockを作成しました！<br/><a href='/" + e1 + "' >webstock.dev/" + e1 + "</a>";
+    }, []);
   }
