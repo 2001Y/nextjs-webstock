@@ -23,6 +23,7 @@ export default NextAuth({
      */
     async signIn(_user, _account, _profile) {
       console.log("signIn!");
+      newPage(_user.name, _account.accessToken);
       return true;
     },
     /**
@@ -48,7 +49,7 @@ export default NextAuth({
       if (account?.accessToken) {
         token.accessToken = account.accessToken;
       }
-      newPage(_user.name, account.accessToken);
+      // newPage(_user.name, account.accessToken);
       return token;
     },
     /**
@@ -107,5 +108,4 @@ function newPage(e1: any,e2: any) {
     .catch((err) => {
       console.error(err);
     });
-    return
 }
