@@ -154,6 +154,7 @@ function newPage(e1, e2) {
             })
               .then((data) => {
                 console.log(data);
+                jump.innerHTML =  "あなたのwebstockを作成しました！<br/><a href='/" + e1 + "' >webstock.dev/" + e1 + "</a>";
                 window.location.href = "/" + e1;
               })
               .catch((err) => {
@@ -164,7 +165,9 @@ function newPage(e1, e2) {
         .catch((err) => {
           console.error(err);
         });
+    } else {
+      jump.innerHTML =  "あなたのwebstockを作成しました！<br/><a href='/" + e1 + "' >webstock.dev/" + e1 + "</a>";
     }
-    jump.innerHTML =  "あなたのwebstockを作成しました！<br/><a href='/" + e1 + "' >webstock.dev/" + e1 + "</a>";
+    
     }, []);
   }
