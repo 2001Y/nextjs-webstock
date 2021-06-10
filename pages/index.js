@@ -28,8 +28,10 @@ const Page = () => {
         <meta
           key="ogp"
           property="og:image"
-          content={"https://webstock.dev/ogp/index"}
+          content="https://webstock.dev/ogp/index"
         />
+        <link rel="preload" as="image" href="https://webstock.dev/ogp/index"></link>
+        <link rel="prefetch" as="image" href="https://webstock.dev/ogp/index"></link>
 
         <meta name="lang" content="ja" />
         <link rel="canonical" href="https://webstock.dev" />
