@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         }
         body::after {
           width: 100vw;
-          height: 3vh;
+          height: 6vh;
           content: "";
           position: fixed;
           bottom: 0;
