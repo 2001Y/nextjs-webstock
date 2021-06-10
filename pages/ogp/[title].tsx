@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const browser = await puppeteer.launch({
     args: chromium.args,
-    defaultViewport: { width: 1400, height: 735 },
+    defaultViewport: { width: 2400, height: 1260 },
     executablePath: await chromium.executablePath,
     headless: true,
   })
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           src: url(https://fonts.gstatic.com/l/font?kit=-F6pfjtqLzI2JPCgQBnw7HFQei0q131nj-onntiDTxoRVjbcOUp04DWFxCuuodHz3eKtfOjDRlWPjiaFP8eIi3-L1DQgz-NLL1RROhokm45x_erAbsNAvOUYw1Os0xEEwIUex3Stg7lpnsNk-s0JY3AzMJQfpIAu5ueRPyFAnQogb1cHgrZinc8rM76qoL8NeNL4WqBwkukPtjAJGBxAInz5rz4lrKM&skey=b1468649b9c42538&v=v28) format('woff2');
         }
         :root {
-          font-size: 2em;
+          font-size: 3.5em;
         }
         * {
           box-sizing: border-box;
