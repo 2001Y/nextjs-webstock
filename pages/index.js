@@ -28,7 +28,7 @@ const Page = () => {
         <meta
           key="ogp"
           property="og:image"
-          content="https://2001y.me/blog/tmb/.jpeg"
+          content={"https://webstock.dev/ogp/index"}
         />
 
         <meta name="lang" content="ja" />
