@@ -11,8 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }): Promise<any> => {
-  const title = params
-
+  const title = params.title;
   if (!title) {
     res.statusCode = 400
     res.end('Bad Request')
