@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }): Promise<any> => {
-  const title = params.title;
+  const title = params;
   if (!title) {
     res.statusCode = 400
     res.end('Bad Request')
@@ -95,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       </head>
       <body>
         <section>
-          <h1><span>webstock.dev/</span>${title}</h1>
+          <h1><span>webstock.dev/</span>${title.title}</h1>
           <p>
             <b class=right>webstock.dev</b>は<b>Gist</b>をデータベースに、<br>
             お気に入りのWebサイトをサムネと共にストックすることができます。
