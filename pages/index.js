@@ -84,7 +84,7 @@ const Page = () => {
             <p>
               Demo:
               <Link href="/2001y">
-                <a>webstock.dev/2001y</a>
+                <a>webstock.dev/2001Y</a>
               </Link>
             </p>
           </>
