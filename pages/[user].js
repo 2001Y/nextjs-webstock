@@ -246,6 +246,8 @@ export default function Result(props) {
           property="og:image"
           content={"https://webstock.dev/ogp/" + props.keyword}
         />
+        <link rel="preload" as="image" href={"https://webstock.dev/ogp/" + props.keyword}></link>
+        <link rel="prefetch" as="image" href={"https://webstock.dev/ogp/" + props.keyword}></link>
       </Head>
 
       <header>
