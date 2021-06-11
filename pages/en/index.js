@@ -7,6 +7,12 @@ import { useEffect } from 'react';
 const Page = () => {
   const [session, loading] = useSession();
 
+  // useEffect(() => {
+  //   if (session) {
+  //     newPage(session.user.name, session.accessToken)
+  //   }
+  // }, []);
+
   return (
     <>
       <Head>
@@ -22,10 +28,12 @@ const Page = () => {
         <meta
           key="ogp"
           property="og:image"
-          content="https://2001y.me/blog/tmb/.jpeg"
+          content="https://webstock.dev/ogp/index"
         />
+        <link rel="preload" as="image" href="https://webstock.dev/ogp/index"></link>
+        <link rel="prefetch" as="image" href="https://webstock.dev/ogp/index"></link>
 
-        <meta name="lang" content="ja" />
+        <meta name="lang" content="en" />
         <link rel="canonical" href="https://webstock.dev" />
         <link rel="alternate" href="https://webstock.dev" hrefLang="ja" />
         <link rel="alternate" href="https://webstock.dev/en" hrefLang="en" />
@@ -41,7 +49,7 @@ const Page = () => {
         </div>
       </header>
       <main id="index">
-        <div id="welcome">
+      <div id="welcome">
           <h2>webstock.dev</h2>
           <p>
             <b>webstock.dev</b> uses{" "}
@@ -58,83 +66,36 @@ const Page = () => {
           </p>
         </div>
 
-        {/* <form
-          action="http://localhost:3000/api/auth/signin/github"
-          method="POST"
-        >
-          <input
-            type="hidden"
-            name="csrfToken"
-            value="1b960ebac0700c3349103e0f207b0516f030af673f2c2c7d6abc502f1ee6e0a6"
-          />
-          <input
-            type="hidden"
-            name="callbackUrl"
-            value="http://localhost:3000/"
-          />
-          <button className="loginButton" onClick={() => signIn()}>Signin with GitHub</button>
-        </form> */}
+        {session && (
+          <>
+            <p id="jump">Page being created...</p>
+            <button className="loginButton" onClick={() => signOut()}>
+              Sign out
+            </button>
+            {/* {localStorage.setItem(session.user.name + "_token", session.accessToken)} */}
+            {newPage(session.user.name, session.accessToken)}
+            {/* {window.location.href = "/" + session.user.name} */}
+          </>
+        )}
 
-        <p>
-          Demo:
-          <Link href="/2001y">
-            <a>webstock.dev/2001y</a>
-          </Link>
-        </p>
-        
-            <form target="sendPhoto" onSubmit={() => newPage()}>
-              <input type="text" id="Huser" placeholder="Username" />
-              <input type="text" id="Htoken" placeholder="Token" />
-              <input type="submit" value="start" />
-            </form>
-            <iframe name="sendPhoto"></iframe>
+        {!session && (
+          <>
+            <button className="loginButton" onClick={() => signIn()}>
+              Signin with GitHub
+            </button>
+            <p>
+              Demo:
+              <Link href="/2001y">
+                <a>webstock.dev/2001Y</a>
+              </Link>
+            </p>
+          </>
+        )}
 
-        {/* <h3>How to get Token</h3>
-            <a
-              href="https://github.com/settings/tokens/new"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Access tokens
-            </a>
-            <ol>
-              <li>
-                <h4>
-                  <a
-                    href="https://gist.github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Gist
-                  </a>
-                  を作成
-                </h4>
-                <p>
-                  ファイル名は<code>webstock.json</code>、コンテンツには
-                  <code>[]</code>。
-                </p>
-              </li>
-              <li>
-                <h4>webstock.devにアクセス</h4>
-                <p>
-                  Githubのユーザー名を指定して、webstock.devにアクセス。
-                  <br />
-                  DEMO:
-                  <a href="/2001y" target="_blank" rel="noopener noreferrer">
-                    webstock.dev/2001y
-                  </a>
-                </p>
-              </li>
-              <li>
-                <h4>AccessTokenの登録</h4>
-                <p>
-                  webstock.dev上の<code>nologin</code>
-                  をクリックして、AccessTokenを登録。
-                  <br />
-                  これでサイトの登録/削除ができるようになります。
-                </p>
-              </li>
-            </ol> */}
+        {/* <button className="loginButton" onClick={() => signIn()}>
+          Signin with GitHub
+        </button> */}
+
         <h3>Share</h3>
         <p>
           <a
@@ -154,69 +115,61 @@ const Page = () => {
           </a>
         </p>
       </main>
-
-      {/* {!session && (
-        <>
-          
-        </>
-      )}
-      {session && newPage(session.user.name, session.accessToken) && (
-        <>
-          　{session.user.name} <br />
-          AccessToken : {session.accessToken} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-        </>
-      )} */}
     </>
   );
 };
 
 export default Page;
 
-function newPage() {
-  let e1 = Huser.value,
-    e2 = Htoken.value;
-    let token = localStorage.setItem(e1 + "_token", e2);
-    fetch("https://api.github.com/users/" + e1 + "/gists", {
-      cache: "reload",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        let state = 0;
-        data.forEach((value) => {
-          if (value.files["webstock.json"]) {
-            state = 1;
-          }
-        });
-        console.log(state);
-        if (state == 0) {
-          alert("tt");
-          fetch("https://api.github.com/gists", {
-            method: "POST",
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-              Authorization: "token " + e2,
-            },
-            body: JSON.stringify({
-              public: true,
-              description: "Updated at " + new Date().toLocaleString(),
-              files: {
-                "webstock.json": {
-                  content: JSON.stringify([]),
-                },
-              },
-            }),
-          })
-            .then((data) => {
-              console.log(data);
-              // window.location.href = "/" + e1;
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
+function newPage(e1, e2) {
+  useEffect(() => {
+    if (!localStorage.getItem(e1 + "_token", e2)) {
+      let token = localStorage.setItem(e1 + "_token", e2);
+      fetch("https://api.github.com/users/" + e1 + "/gists?login", {
+        cache: "reload",
       })
-      .catch((err) => {
-        console.error(err);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          let state = 0;
+          data.forEach((value) => {
+            if (value.files["webstock.json"]) {
+              state = 1;
+            }
+          });
+          console.log(state);
+          if (state == 0) {
+            fetch("https://api.github.com/gists", {
+              method: "POST",
+              headers: {
+                Accept: "application/vnd.github.v3+json",
+                Authorization: "token " + e2,
+              },
+              body: JSON.stringify({
+                public: true,
+                description: "Updated at " + new Date().toLocaleString(),
+                files: {
+                  "webstock.json": {
+                    content: JSON.stringify([]),
+                  },
+                },
+              }),
+            })
+              .then((data) => {
+                console.log(data);
+                jump.innerHTML =  "I created your webstock!<br/><a href='/" + e1 + "' >webstock.dev/" + e1 + "</a>";
+                window.location.href = "/" + e1;
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      jump.innerHTML =  "I created your webstock!<br/><a href='/" + e1 + "' >webstock.dev/" + e1 + "</a>";
+    }
+    
+    }, []);
   }
