@@ -123,7 +123,12 @@ export default function Result(props) {
       "url": document.getElementById("add_url").value,
       "comment":""
     };
-    content.unshift(v);
+    console.log(content.length);
+    if (content.length == 1) {
+      content = new Array(v);
+    } else {
+      content.unshift(v);
+    }
     document.getElementById("add_url").value = "";
     view(content, user);
     setGist(content, user);
@@ -152,11 +157,9 @@ export default function Result(props) {
     });
 
     if (content.length) {
-      let stockList = "", c = '<div class="memo" contentEditable></div>';
+      let stockList = "";
       content.forEach(function (value) {
-        if (value.comment) {
-          c = '<div class="memo" contentEditable>' + value.comment + '</div>';
-        }
+        let c = '<div class="memo" contentEditable>' + value.comment + '</div>';
         stockList +=
           '<li class="site"><div class=delete>×</div>'+c+'<a href="' +
           value.url +
@@ -165,8 +168,6 @@ export default function Result(props) {
           '"></a></li>';
       });
       Hstock.innerHTML = stockList;
-  
-      localStorage.setItem(user + "_webstock", JSON.stringify(content));
   
       document.querySelectorAll(".delete").forEach((elm, i) => {
         elm.addEventListener("click", {
@@ -185,6 +186,7 @@ export default function Result(props) {
     } else {
       Hstock.innerHTML = "Hello! Let's start!";
     }
+    localStorage.setItem(user + "_webstock", JSON.stringify(content));
   }
 
   function click() {
