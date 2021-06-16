@@ -118,11 +118,14 @@ export default function Result(props) {
     }
   }
   function addGist(user) {
-    let content = JSON.parse(localStorage.getItem(user + "_webstock"));
+    let content = new Array(localStorage.getItem(user + "_webstock"));
     let v = {
       "url": document.getElementById("add_url").value,
       "comment":""
     };
+    content.unshift(v);
+    
+    
     content.unshift(v);
     document.getElementById("add_url").value = "";
     view(content, user);
