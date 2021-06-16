@@ -124,9 +124,6 @@ export default function Result(props) {
       "comment":""
     };
     content.unshift(v);
-    
-    
-    content.unshift(v);
     document.getElementById("add_url").value = "";
     view(content, user);
     setGist(content, user);
