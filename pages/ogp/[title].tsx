@@ -67,11 +67,13 @@ export const getServerSideProps: GetServerSideProps = async ({
         }
         h1 {
           letter-spacing: -0.03em;
+          width: calc(100vw - 16vh);
           font-feature-settings: "palt";
           font-size: 5rem;
           font-weight: bold;
           margin: 0 0 1.3rem 0;
           line-height: 1;
+          overflow-wrap: break-word;
         }
         span {
           font-size: 2.5rem;
