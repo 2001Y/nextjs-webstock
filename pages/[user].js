@@ -154,7 +154,7 @@ export default function Result(props) {
     if (content.length) {
       let stockList = "", c = '<div class="memo" contentEditable></div>';
       content.forEach(function (value) {
-        if (e.comment) {
+        if (value.comment) {
           c = '<div class="memo" contentEditable>' + value.comment + '</div>';
         }
         stockList +=
