@@ -53,7 +53,7 @@ const Page = () => {
           <h2>webstock.dev</h2>
           <p>
             <b>webstock.dev</b> uses{" "}
-            <a
+            Your <a
               href="https://gist.github.com"
               target="_blank"
               rel="noopener noreferrer"

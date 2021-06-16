@@ -99,7 +99,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         <section>
           <h1><span>webstock.dev/</span>${title.title}</h1>
           <p>
-            <b class=right>webstock.dev</b>は<b>Gist</b>をデータベースに、<br>
+            <b class=right>webstock.dev</b>はあなたの<b>Gist</b>をデータベースに、<br>
             お気に入りのWebサイトをサムネと共にストックすることができます。
           </p>
         </section>

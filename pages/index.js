@@ -52,7 +52,7 @@ const Page = () => {
         <div id="welcome">
           <h2>webstock.dev</h2>
           <p>
-            <b>webstock.dev</b>は
+            <b>webstock.dev</b>はあなたの
             <a
               href="https://gist.github.com"
               target="_blank"
