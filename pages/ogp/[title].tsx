@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           font-style: normal;
           font-weight: 700;
           font-display: swap;
-          src: url(https://fonts.gstatic.com/l/font?kit=-F6pfjtqLzI2JPCgQBnw7HFQei0q131nj-onntiDTxoRVjbcOUp04DWFxCuuodHz3eKtfOjDRlWPjiaFP8eIi3-L1DQgz-NLL1RROhokm45x_erAbsNAvOUYw1Os0xEEwIUex3Stg7lpnsNk-s0JY3AzMJQfpIAu5ueRPyFAnQogb1cHgrZinc8rM76qoL8NeNL4WqBwkukPtjAJGBxAInz5rz4lrKM&skey=b1468649b9c42538&v=v28) format('woff2');
+          src: url(https://fonts.gstatic.com/l/font?kit=-F6pfjtqLzI2JPCgQBnw7HFQei0q131nj-onsNhOiMyQtdBa0av4EsoQMkTNob-Q3o_Pf5ihTSLthFznMr7qhzrp23BC3agpOh4zIlJGgMMT46aiT5Aim7h65jrO-Xlm6_R87w7Pqv4Lso8G155rUSZRDMF-rNpP777wL30hh2lBSDdmrtMDrqtKBdXLldVsQryZY9sRrpNvtXNpGEMmITqfrWxAlNdAhY7p-WOH_IzpFkPfIUxNakObzicrXci6Cg&skey=b1468649b9c42538&v=v28) format('woff2');
         }
         :root {
           font-size: 3.5em;
