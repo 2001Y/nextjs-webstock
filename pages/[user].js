@@ -152,9 +152,11 @@ export default function Result(props) {
     });
 
     if (content.length) {
-      let stockList = "";
+      let stockList = "", c = '<div class="memo" contentEditable></div>';
       content.forEach(function (value) {
-        let c = '<div class="memo" contentEditable>' + value.comment + '</div>';
+        if (e.comment) {
+          c = '<div class="memo" contentEditable>' + value.comment + '</div>';
+        }
         stockList +=
           '<li class="site"><div class=delete>×</div>'+c+'<a href="' +
           value.url +
